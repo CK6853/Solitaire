@@ -17,6 +17,12 @@ namespace Solitaire
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            CardDeck newDeck = new CardDeck();
         }
     }
+
+    
+
+    
 }

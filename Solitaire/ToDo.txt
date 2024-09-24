@@ -1,0 +1,7 @@
+
+
+Implement LinkedLists (I want to)
+
+Implement DEStack (Double-Ended)
+	Pop, PopBottom, Peek, PeekBottom, Push, PushBottom
+
