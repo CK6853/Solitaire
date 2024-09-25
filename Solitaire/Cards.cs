@@ -24,6 +24,33 @@ namespace Solitaire
             this.value = value;
             this.suit = suit;
         }
+
+        public override string ToString()
+        {
+            string valueString;
+            if (value < 11)
+            {
+                valueString = value.ToString();
+            } else
+            {
+                switch(value)
+                {
+                    case 11:
+                        valueString = "Jack";
+                        break;
+                    case 12:
+                        valueString = "Queen";
+                        break;
+                    case 13:
+                        valueString = "King";
+                        break;
+                    default:
+                        valueString = "";
+                        break;
+                }
+            }
+            return $"{valueString} of {suit.ToString()}";
+        }
     }
 
     public class CardDeck
