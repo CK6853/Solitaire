@@ -228,5 +228,66 @@ namespace Solitaire
 
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Transform the whole LinkedList into an Array
+        /// </summary>
+        /// <returns>The LinkedList as an Array</returns>
+        public T[] ToArray()
+        {
+            if (Count == 0) return new T[0];
+
+            // Create empty array to fill
+            T[] returnArray = new T[Count];
+
+            // Iterate through the list, keeping track of how deep we are
+            Node<T> currentNode = Head;
+            int index = 0;
+            while (currentNode.next != null)
+            {
+                // Store this value in its place in the new array
+                returnArray[index] = currentNode.value;
+                currentNode = currentNode.next;
+                index++;
+            }
+            // Loop will end when it finds the last item, process it separately
+            returnArray[index] = currentNode.value;
+            return returnArray;
+        }
+
+        /// <summary>
+        /// Randomizes the card order for this LinkedList using Fisher-Yates algorithm
+        /// </summary>
+        public void Randomize()
+        {
+            // Convert to an array
+            T[] shuffleArray = ToArray();
+
+            // Set up number generator
+            Random rng = new Random();
+
+            // Fisher-Yates
+            int n = shuffleArray.Length;
+            while (n > 1)
+            {
+                int k = rng.Next(n--);
+                // Swap elements
+                (shuffleArray[n], shuffleArray[k]) = (shuffleArray[k], shuffleArray[n]);
+            }
+
+            // Iterate through the list, keeping track of how deep we are
+            Node<T> currentNode = Head;
+            int index = 0;
+            while (currentNode.next != null)
+            {
+                // Store the corresponding shuffled array value into the LinkedList
+                currentNode.value = shuffleArray[index];
+                currentNode = currentNode.next;
+                index++;
+            }
+            // Loop will end when it finds the last item, process it separately
+            currentNode.value = shuffleArray[index];
+
+        }
     }
 }
